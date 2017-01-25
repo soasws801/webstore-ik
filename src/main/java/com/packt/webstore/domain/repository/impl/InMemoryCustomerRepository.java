@@ -15,7 +15,7 @@ public class InMemoryCustomerRepository implements CustomerRepository {
 
 	public InMemoryCustomerRepository() {
 		Customer ibrahim = new Customer("300245", "Ibrahim", "Khalid");
-		ibrahim.setAddress("941 Progress Avenue, Scarborough, ON");
+		ibrahim.setAddress("Progress Avenue, Scarborough, ON");
 		ibrahim.setNoOfOrdersMade(10);
 		
 		Customer eric = new Customer("300242", "Eric", "Desrochers");
