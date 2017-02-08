@@ -18,6 +18,9 @@ tstrap.min.css">
 	<section>
 	<div class="jumbotron">
 		<a href="<c:url value="/j_spring_security_logout" />" class="btn btndanger btn-mini pull-right">logout</a>
+		<div class="pull-right" style="padding-right:50px">
+			<a href="?language=en" >English</a>|<a href="?language=nl" >Dutch</a>
+		</div>
 		<div class="container">
 			<h1>Products</h1>
 			<p>Add products</p>
@@ -29,10 +32,12 @@ tstrap.min.css">
 	<form:form modelAttribute="newProduct" class="formhorizontal" enctype="multipart/form-data">
 		<fieldset>
 			<legend>Add new product</legend>
+			<form:errors path="*" cssClass="alert alert-danger" element="div"/>
 			<div class="form-group">
 				<label class="control-label col-lg-2 col-lg-2" for="productId"><spring:message code= "addProduct.form.productId.label" /></label>
 				<div class="col-lg-10">
 					<form:input id="productId" path="productId" type="text" class="form:input-large"></form:input>
+					<form:errors path="productId" cssClass="text-danger"/>
 				</div>
 			</div>
 			<div class="form-group">
@@ -45,6 +50,7 @@ tstrap.min.css">
 				<label class="control-label col-lg-2" for="name">Name</label>
 				<div class="col-lg-10">
 					<form:input id="name" path="name" type="text" class="form:input-large" ></form:input>
+					<form:errors path="name" cssClass="text-danger"/>
 				</div>
 			</div>
 			
@@ -52,6 +58,7 @@ tstrap.min.css">
 				<label class="control-label col-lg-2" for="unitPrice">Unit Price</label>
 				<div class="col-lg-10">
 					<form:input id="unitPrice" path="unitPrice" type="double" class="form:input-large" ></form:input>
+					<form:errors path="unitPrice" cssClass="text-danger"/>
 				</div>
 			</div>
 			
