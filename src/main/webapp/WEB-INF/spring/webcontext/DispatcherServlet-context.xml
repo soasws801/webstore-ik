@@ -72,5 +72,16 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
 		<property name="validationMessageSource" ref="messageSource"/>
 	</bean>
-
+	
+	<bean id="productValidator" class="com.packt.webstore.validator.ProductValidator">
+		<property name = "springValidators">
+			<set>
+				<ref bean = "unitsInStockValidator"/>
+				<ref bean = "ProductImageValidator"/>
+			</set>
+		</property>
+	</bean>
+	<bean id="unitsInStockValidator" class="com.packt.webstore.validator.UnitsInStockValidator"/>	
+	<bean id="ProductImageValidator" class="com.packt.webstore.validator.ProductImageValidator"/>
+	
 </beans>
