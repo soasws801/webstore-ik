@@ -12,6 +12,7 @@ public class CartItem implements Serializable {
 
 	public CartItem() {
 		// TODO Auto-generated constructor stub
+		this.quantity = 1;
 	}
 
 	public CartItem(Product product) {
