@@ -7,6 +7,8 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -15,7 +17,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.packt.webstore.validator.ProductId;
 
 @XmlRootElement
-public class Product {
+public class Product implements Serializable {
+	
+	private static final long serialVersionUID = -3560539622417210365L;
 	@Pattern(regexp="P[0-9]+", message="{Pattern.Product.productId.validation}")
 	@ProductId
 	private String productId;

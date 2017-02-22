@@ -14,27 +14,27 @@ public class InMemoryCustomerRepository implements CustomerRepository {
 	private List<Customer> listOfCustomers = new ArrayList<Customer>();
 
 	public InMemoryCustomerRepository() {
-		Customer ibrahim = new Customer("300245", "Ibrahim", "Khalid");
+		Customer ibrahim = new Customer("300245", "Ibrahim", "Khalid", "Ibrahim Khalid");
 		ibrahim.setAddress("Progress Avenue, Scarborough, ON");
 		ibrahim.setNoOfOrdersMade(10);
 		
-		Customer eric = new Customer("300242", "Eric", "Desrochers");
+		Customer eric = new Customer("300242", "Eric", "Desrochers", "Eric Desrochers");
 		eric.setAddress("941 Progress Avenue, Scarborough, ON");
 		eric.setNoOfOrdersMade(55);
 		
-		Customer patrick = new Customer("300214", "Patrick", "Cumayas");
+		Customer patrick = new Customer("300214", "Patrick", "Cumayas", "Patrick Cumayas");
 		patrick.setAddress("941 Progress Avenue, Scarborough, ON");
 		patrick.setNoOfOrdersMade(5);
 		
-		Customer philip = new Customer("300215", "Philip", "Weekes");
+		Customer philip = new Customer("300215", "Philip", "Weekes", "Philip Weekes");
 		philip.setAddress("941 Progress Avenue, Scarborough, ON");
 		philip.setNoOfOrdersMade(150);
 		
-		Customer umair = new Customer("300216", "Umair", "Warsi");
+		Customer umair = new Customer("300216", "Umair", "Warsi", "Umair Warsi");
 		umair.setAddress("941 Progress Avenue, Scarborough, ON");
 		umair.setNoOfOrdersMade(70);
 		
-		Customer neel = new Customer("300217", "Neel", "Shah");
+		Customer neel = new Customer("300217", "Neel", "Shah", "Neel Shah");
 		neel.setAddress("941 Progress Avenue, Scarborough, ON");
 		neel.setNoOfOrdersMade(80);
 		
