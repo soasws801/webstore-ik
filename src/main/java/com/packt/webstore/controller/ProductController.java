@@ -1,8 +1,11 @@
 package com.packt.webstore.controller;
 
 import java.io.File;
+import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -29,7 +32,6 @@ import com.packt.webstore.exception.NoProductsFoundUnderCategoryException;
 import com.packt.webstore.exception.ProductNotFoundException;
 import com.packt.webstore.service.ProductService;
 import com.packt.webstore.validator.ProductValidator;
-import com.packt.webstore.validator.UnitsInStockValidator;
 
 @Controller
 @RequestMapping("/products")
@@ -64,16 +66,33 @@ public class ProductController {
 	}
 	
 	@RequestMapping("/filter/{ByCriteria}")
-	public String getProductsByFilter(@MatrixVariable(pathVar = "ByCriteria") Map<String, List<String>> filterParams,
+	public String getProductsByFilter(
+			@MatrixVariable(pathVar = "ByCriteria") Map<String, List<String>> filterParams,
 			Model model) {
-		model.addAttribute("products", productService.getProductsByFilter(filterParams));
+		model.addAttribute("products",
+				productService.getProductsByFilter(filterParams));
 		return "products";
 	}
-	
+
 	@RequestMapping("/product")
 	public String getProductById(@RequestParam("id") String productId, Model model) {
 		model.addAttribute("product", productService.getProductById(productId));
 		return "product";
+	}
+
+	@RequestMapping("/{category}/{price}")
+	public String filterProducts(
+			@MatrixVariable(pathVar = "price") Map<String, List<String>> priceRange,
+			@RequestParam("manufacturer") String manufacturer,
+			@PathVariable("category") String category, Model model) {
+		// Probably shouldn't just take whatever the user gives us....
+		BigDecimal lowPrice = new BigDecimal(priceRange.get("low").get(0));
+		BigDecimal highPrice = new BigDecimal(priceRange.get("high").get(0));
+
+		model.addAttribute("products", productService.filterProducts(lowPrice,
+				highPrice, manufacturer, category));
+
+		return "products";
 	}
 	
 	@InitBinder
