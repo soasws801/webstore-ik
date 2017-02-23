@@ -2,7 +2,6 @@ package com.packt.webstore.domain.repository.impl;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +10,6 @@ import java.util.Set;
 import org.springframework.stereotype.Repository;
 import com.packt.webstore.domain.Product;
 import com.packt.webstore.domain.repository.ProductRepository;
-import com.packt.webstore.exception.ProductNotFoundException;
 
 @Repository
 public class InMemoryProductRepository implements ProductRepository {
@@ -47,16 +45,14 @@ public class InMemoryProductRepository implements ProductRepository {
 		Product productById = null;
 
 		for (Product product : listOfProducts) {
-			if (product != null && product.getProductId() != null
-					&& product.getProductId().equals(productId)) {
+			if (product != null && product.getProductId() != null && product.getProductId().equals(productId)) {
 				productById = product;
 				break;
 			}
 		}
 
 		if (productById == null) {
-			throw new IllegalArgumentException(
-					"No products found with the product id: " + productId);
+			throw new IllegalArgumentException("No products found with the product id: " + productId);
 		}
 		return productById;
 	}
@@ -72,8 +68,7 @@ public class InMemoryProductRepository implements ProductRepository {
 		return productsByCategory;
 	}
 
-	public Set<Product> getProductsByFilter(
-			Map<String, List<String>> filterParams) {
+	public Set<Product> getProductsByFilter(Map<String, List<String>> filterParams) {
 		Set<Product> productsByBrand = new HashSet<Product>();
 		Set<Product> productsByCategory = new HashSet<Product>();
 
@@ -111,28 +106,23 @@ public class InMemoryProductRepository implements ProductRepository {
 		return productsByManufacturer;
 	}
 
-	public List<Product> getProductsByPriceFilter(BigDecimal low,
-			BigDecimal high) {
+	public List<Product> getProductsByPriceFilter(BigDecimal low, BigDecimal high) {
 		List<Product> productsByPriceFilter = new ArrayList<Product>();
 
 		for (Product product : listOfProducts) {
-			if (low.compareTo(product.getUnitPrice()) <= 0
-					&& high.compareTo(product.getUnitPrice()) >= 0) {
+			if (low.compareTo(product.getUnitPrice()) <= 0 && high.compareTo(product.getUnitPrice()) >= 0) {
 				productsByPriceFilter.add(product);
 			}
 		}
 		return productsByPriceFilter;
 	}
 
-	public Set<Product> filterProducts(BigDecimal lowPrice,
-			BigDecimal highPrice, String manufacturer, String category) {
+	public Set<Product> filterProducts(BigDecimal lowPrice, BigDecimal highPrice, String manufacturer,
+			String category) {
 		// This is super inefficient, but whatever
-		Set<Product> byPrice = new HashSet<Product>(getProductsByPriceFilter(
-				lowPrice, highPrice));
-		Set<Product> byManufacturer = new HashSet<Product>(
-				getProductsByManufacturer(manufacturer));
-		Set<Product> byCategory = new HashSet<Product>(
-				getProductsByCategory(category));
+		Set<Product> byPrice = new HashSet<Product>(getProductsByPriceFilter(lowPrice, highPrice));
+		Set<Product> byManufacturer = new HashSet<Product>(getProductsByManufacturer(manufacturer));
+		Set<Product> byCategory = new HashSet<Product>(getProductsByCategory(category));
 
 		byPrice.retainAll(byManufacturer);
 		byPrice.retainAll(byCategory);

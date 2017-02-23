@@ -1,7 +1,6 @@
 package com.packt.webstore.service.impl;
 
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -13,7 +12,7 @@ import com.packt.webstore.domain.repository.ProductRepository;
 import com.packt.webstore.service.ProductService;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	private ProductRepository productRepository;
@@ -21,13 +20,12 @@ public class ProductServiceImpl implements ProductService{
 	public List<Product> getAllProducts() {
 		return productRepository.getAllProducts();
 	}
-	
+
 	public List<Product> getProductsByCategory(String category) {
 		return productRepository.getProductsByCategory(category);
 	}
 
-	public Set<Product> getProductsByFilter(
-			Map<String, List<String>> filterParams) {
+	public Set<Product> getProductsByFilter(Map<String, List<String>> filterParams) {
 		return productRepository.getProductsByFilter(filterParams);
 	}
 
@@ -39,15 +37,13 @@ public class ProductServiceImpl implements ProductService{
 		return productRepository.getProductsByManufacturer(manufacturer);
 	}
 
-	public List<Product> getProductsByPriceFilter(BigDecimal low,
-			BigDecimal high) {
+	public List<Product> getProductsByPriceFilter(BigDecimal low, BigDecimal high) {
 		return productRepository.getProductsByPriceFilter(low, high);
 	}
 
-	public Set<Product> filterProducts(BigDecimal lowPrice,
-			BigDecimal highPrice, String manufacturer, String category) {
-		return productRepository.filterProducts(lowPrice, highPrice,
-				manufacturer, category);
+	public Set<Product> filterProducts(BigDecimal lowPrice, BigDecimal highPrice, String manufacturer,
+			String category) {
+		return productRepository.filterProducts(lowPrice, highPrice, manufacturer, category);
 	}
 
 	public void addProduct(Product product) {

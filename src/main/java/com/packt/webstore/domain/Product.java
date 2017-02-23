@@ -11,11 +11,11 @@ import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.packt.webstore.validator.ProductId;
 
+@SuppressWarnings("restriction")
 @XmlRootElement
 public class Product implements Serializable {
 	
